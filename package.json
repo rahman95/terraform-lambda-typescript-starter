@@ -7,7 +7,7 @@
     "tf:plan": "cd terraform; terraform plan",
     "tf:apply": "cd terraform; terraform apply",
     "tf:destroy": "cd terraform; terraform destroy",
-    "zip": "zip lambda/dist/lambda.zip lambda/src/index.js"
+    "zip": "cd lambda/src; zip ../dist/lambda.zip index.js"
   },
   "repository": "git@github.com:rahman95/terraform-lambda-example.git",
   "author": "Rahman Younus <rahman.younus@dazn.com>",
