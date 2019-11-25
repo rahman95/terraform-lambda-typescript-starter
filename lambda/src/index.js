@@ -3,12 +3,13 @@ exports.handler = async event => {
 };
 
 const sendResponse = (status, body) => {
-  var response = {
+  const response = {
     statusCode: status,
     headers: {
       "Content-Type": "text/html"
     },
     body: body
   };
+
   return response;
 };
