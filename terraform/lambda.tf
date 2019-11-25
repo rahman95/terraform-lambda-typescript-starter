@@ -42,3 +42,14 @@ resource "aws_iam_role" "terraform-iam-role" {
 }
 EOF
 }
+
+resource "aws_lambda_permission" "terraform-lambda" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = "${aws_lambda_function.terraform-lambda.function_name}"
+  principal     = "apigateway.amazonaws.com"
+
+  # The "/*/*" portion grants access from any method on any resource
+  # within the API Gateway REST API.
+  source_arn = "${aws_api_gateway_rest_api.terraform-api-gateway-rest-api.execution_arn}/*/*"
+}
