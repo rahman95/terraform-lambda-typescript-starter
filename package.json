@@ -8,7 +8,7 @@
     "tf:apply": "cd terraform; terraform apply",
     "tf:destroy": "cd terraform; terraform destroy",
     "zip": "cd lambda/src; zip ../dist/lambda.zip index.js",
-    "deploy:all": "yarn zip; yarn tf:apply"
+    "deploy:all": "yarn zip; yarn tf:apply -auto-approve"
   },
   "repository": "git@github.com:rahman95/terraform-lambda-example.git",
   "author": "Rahman Younus <rahman.younus@dazn.com>",
