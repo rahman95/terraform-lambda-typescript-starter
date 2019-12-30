@@ -11,7 +11,8 @@
     "tf:apply": "yarn build; yarn tf; terraform apply",
     "tf:destroy": "yarn tf; terraform destroy",
     "deploy:all": "yarn script:build-dependency-layer; yarn tf:apply -auto-approve",
-    "update:all": "yarn tf:destroy -auto-approve; yarn deploy:all"
+    "update:all": "yarn tf:destroy -auto-approve; yarn deploy:all",
+    "cleanup": "rm -rf lambda/dist/*"
   },
   "repository": "git@github.com:rahman95/terraform-lambda-example.git",
   "author": "Rahman Younus <rahman_95@live.co.uk>",
