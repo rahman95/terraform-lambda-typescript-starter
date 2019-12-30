@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "tf:init": "cd terraform; terraform init",
-    "tf:plan": "cd terraform; terraform plan",
-    "tf:apply": "cd terraform; terraform apply",
-    "tf:destroy": "cd terraform; terraform destroy",
-    "zip": "cd lambda/src; zip ../dist/lambda.zip index.js",
-    "deploy:all": "yarn zip; yarn tf:apply -auto-approve"
+    "script:build-dependency-layer": "./scripts/build-dependency-layer.sh",
+    "tf": "cd terraform",
+    "tf:init": "yarn tf; terraform init",
+    "tf:plan": "yarn tf; terraform plan",
+    "tf:apply": "yarn tf; terraform apply",
+    "tf:destroy": "yarn tf; terraform destroy",
+    "deploy:all": "yarn script:build-dependency-layer; yarn tf:apply -auto-approve"
   },
   "repository": "git@github.com:rahman95/terraform-lambda-example.git",
-  "author": "Rahman Younus <rahman.younus@dazn.com>",
+  "author": "Rahman Younus <rahman_95@live.co.uk>",
   "license": "MIT"
 }

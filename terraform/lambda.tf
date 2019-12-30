@@ -1,21 +1,26 @@
+data "archive_file" "function_archive" {
+  type        = "zip"
+  source_dir  = "${path.module}/../lambda/src"
+  output_path = "${path.module}/../lambda/dist/function.zip"
+}
+
+resource "aws_lambda_layer_version" "dependency_layer" {
+  filename            = "${path.module}/../dist/layers/layers.zip"
+  layer_name          = "dependency_layer"
+  compatible_runtimes = ["nodejs10.x"]
+  source_code_hash    = "${base64sha256(file("${path.module}/../dist/layers/layers.zip"))}"
+}
+
 resource "aws_lambda_function" "terraform-lambda" {
-  #   filename = "../lambda/dist/lambda.zip"
-
-  s3_bucket = "${aws_s3_bucket.terraform-s3-lambda.id}"
-  s3_key    = "${aws_s3_bucket_object.terraform-s3-object.key}"
-
+  filename      = "${data.archive_file.function_archive.output_path}"
   function_name = "test-lambda"
-
-  role    = "${aws_iam_role.terraform-iam-role.arn}"
-  handler = "index.handler"
-
-  # The filebase64sha256() function is available in Terraform 0.11.12 and later
-  # For Terraform 0.11.11 and earlier, use the base64sha256() function and the file() function:
-  # source_code_hash = "${base64sha256(file("lambda_function_payload.zip"))}"
-  #   source_code_hash = "${filebase64sha256("${aws_s3_bucket_object.terraform-s3-object.key}")}"
+  role          = "${aws_iam_role.terraform-iam-role.arn}"
+  handler       = "index.handler"
 
   # Lambda Runtimes can be found here: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
   runtime = "nodejs10.x"
+  timeout = "30"
+
   environment {
     variables = {
       foo = "bar"
