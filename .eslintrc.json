@@ -1,0 +1,53 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "airbnb-typescript/base",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:import/typescript",
+      "prettier",
+      "prettier/@typescript-eslint"
+    ],
+    "plugins": ["@typescript-eslint", "import", "prettier"],
+    "env": {
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+    "rules": {
+      "prettier/prettier": "error",
+      "class-methods-use-this": "warn",
+      "no-await-in-loop": "warn",
+      "@typescript-eslint/no-inferrable-types": "off",
+      "@typescript-eslint/no-var-requires": "off",
+      "import/no-cycle": "off",
+      "import/prefer-default-export": "off",
+      "no-param-reassign": "off",
+      "prefer-destructuring": "off"
+    },
+    "overrides": [
+      {
+        "files": ["lambda/src/**/*.ts"],
+        "parser": "@typescript-eslint/parser",
+        "rules": {
+          "no-undef": "off",
+          "import/no-unresolved": "off"
+        }
+      }
+    ],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "paths": ["lambda/src"],
+          "extensions": [".js", ".jsx", ".ts", ".tsx"],
+          "moduleDirectory": ["node_modules"]
+        }
+      }
+    }
+  }

@@ -1,23 +1,17 @@
-import { APIGatewayEvent } from "aws-lambda";
-
-const handler = (event: APIGatewayEvent): response => {
-  return response({ statusCode: 200, body: "Hello World" });
-};
-
 const defaultHeaders = {
-  "Content-Type": "text/html"
+  'Content-Type': 'text/html',
 };
 
-const response = ({
-  statusCode,
-  headers = defaultHeaders,
-  body
-}: responseInput): response => {
+const response = ({ statusCode, headers = defaultHeaders, body }: ResponseInput): Response => {
   return {
     statusCode,
     headers,
-    body
+    body,
   };
+};
+
+const handler = (): Response => {
+  return response({ statusCode: 200, body: 'Hello World' });
 };
 
 export { handler };
