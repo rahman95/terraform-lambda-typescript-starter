@@ -1,9 +1,9 @@
-interface responseInput {
+interface ResponseInput {
   statusCode: number;
   headers?: object;
   body: string;
 }
-interface response {
+interface Response {
   statusCode: number;
   headers: object;
   body: string;
