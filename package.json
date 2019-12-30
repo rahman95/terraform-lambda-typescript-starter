@@ -14,7 +14,7 @@
     "update:all": "yarn tf:destroy -auto-approve; yarn deploy:all",
     "cleanup": "rm -rf lambda/dist/*"
   },
-  "repository": "git@github.com:rahman95/terraform-lambda-example.git",
+  "repository": "git@github.com:rahman95/terraform-lambda-typescript-starter.git",
   "author": "Rahman Younus <rahman_95@live.co.uk>",
   "license": "MIT",
   "devDependencies": {
