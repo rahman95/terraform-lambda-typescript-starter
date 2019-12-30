@@ -13,5 +13,13 @@
   },
   "repository": "git@github.com:rahman95/terraform-lambda-example.git",
   "author": "Rahman Younus <rahman_95@live.co.uk>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.39",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/node": "^13.1.1",
+    "ts-node": "^8.5.4",
+    "tsc": "^1.20150623.0",
+    "typescript": "^3.7.4"
+  }
 }
