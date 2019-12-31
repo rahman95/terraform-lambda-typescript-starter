@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --ext .js,.ts,.tsx ./lambda/src/",
-    "script:build-dependency-layer": "./scripts/build-dependency-layer.sh",
+    "script:build-dependency-layer": "yarn install --prod; ./scripts/build-dependency-layer.sh; yarn install;",
     "build": "tsc",
     "tf:init": "cd terraform; terraform init",
     "tf:plan": "cd terraform; terraform plan",
