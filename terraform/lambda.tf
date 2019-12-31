@@ -11,15 +11,16 @@ resource "aws_lambda_layer_version" "dependency_layer" {
   source_code_hash    = "${base64sha256(file("${path.module}/../dist/layers/layers.zip"))}"
 }
 
-resource "aws_lambda_function" "terraform-lambda" {
+resource "aws_lambda_function" "lambda" {
   filename      = "${data.archive_file.function_archive.output_path}"
-  function_name = "test-lambda"
-  role          = "${aws_iam_role.terraform-iam-role.arn}"
+  function_name = "${local.name}"
+  role          = "${aws_iam_role.lambda_role.arn}"
   handler       = "index.handler"
 
   # Lambda Runtimes can be found here: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
-  runtime = "nodejs10.x"
-  timeout = "30"
+  runtime     = "nodejs10.x"
+  timeout     = "30"
+  memory_size = "${local.lambda_memory}"
 
   environment {
     variables = {
@@ -28,33 +29,13 @@ resource "aws_lambda_function" "terraform-lambda" {
   }
 }
 
-resource "aws_iam_role" "terraform-iam-role" {
-  name = "terraform-iam-role"
-
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "lambda.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-EOF
-}
-
-resource "aws_lambda_permission" "terraform-lambda" {
+resource "aws_lambda_permission" "lambda" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.terraform-lambda.function_name}"
+  function_name = "${aws_lambda_function.lambda.function_name}"
   principal     = "apigateway.amazonaws.com"
 
   # The "/*/*" portion grants access from any method on any resource
   # within the API Gateway REST API.
-  source_arn = "${aws_api_gateway_rest_api.terraform-api-gateway-rest-api.execution_arn}/*/*"
+  source_arn = "${aws_api_gateway_rest_api.api_gateway_rest_api.execution_arn}/*/*"
 }
