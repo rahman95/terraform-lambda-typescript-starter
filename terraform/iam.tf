@@ -24,6 +24,7 @@ data "aws_iam_policy_document" "lambda_document" {
       "logs:CreateLogStream",
       "logs:PutLogEvents",
       "cloudwatch:PutMetricData",
+      "kms:*",
     ]
 
     resources = ["*"]

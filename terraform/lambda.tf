@@ -24,7 +24,7 @@ resource "aws_lambda_function" "lambda" {
 
   environment {
     variables = {
-      foo = "bar"
+      "EXAMPLE_SECRET" = "${var.example_secret}"
     }
   }
 }

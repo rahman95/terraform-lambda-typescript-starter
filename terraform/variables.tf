@@ -7,3 +7,7 @@ variable "aws_profile" {
   type    = "string"
   default = "default"
 }
+
+variable "example_secret" {
+  type = "string"
+}
