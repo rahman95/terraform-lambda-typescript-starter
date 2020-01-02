@@ -2,6 +2,10 @@
 This is a basic Hello World starter template that utilises terraform for provisioning cloud resources. It is an opionanted starter which 
 uses TypeScript, ESlint, Prettier and Husky.
 
+## Usage 🔬
+*Currently being consumed by these project(s) of mine, will try and keep this list updated*
+- [Serverless Weather 🌦](https://github.com/rahman95/serverless-weather)
+
 ## Tech 🧰
 - Terraform
 - Typescript
@@ -14,7 +18,7 @@ uses TypeScript, ESlint, Prettier and Husky.
 - Lambda
 - KMS Setup
 
-## Usage and Deployment 🚀
+## Deployment 🚀
 - Run `yarn lint` to lint TS code using both ESLint and Prettier working together
 - Run `yarn script:build-dependency-layer` this will run a bash script to zip up production dependencies and add them to the lamba as a layer
 - Run `yarn build` to run TSC to compile TS code to plain JS
